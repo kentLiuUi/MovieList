@@ -1,0 +1,29 @@
+.blockedMoviesGrid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* grid-template-rows: repeat(auto, 100px); */
+}
+
+.blockedMoviesCard {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* height: auto; */
+}
+
+.blockedMoviesCard img {
+    width: 100%;
+}
+
+.likedMoviesCardHover {
+    height: 30px;
+    background-color: black;
+}
+
+.likedMoviesCardHover img {
+    height: 100%;
+    object-fit: contain;
+
+}

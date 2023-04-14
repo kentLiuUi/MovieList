@@ -9,6 +9,10 @@ import reducer from './store/reducer';
 
 const store = createStore(reducer);
 
+store.subscribe(() => {
+    console.log("last action", store.getState());
+});
+
 const root = createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
