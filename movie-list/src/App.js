@@ -1,11 +1,11 @@
-import {Route, Routes, Link} from 'react-router-dom';
-import BlockedMoviesPage from './containers/BlockedMoviesPage';
-import { useEffect } from 'react';
-import {API_URL, API_KEY} from './constants';
-import { connect } from 'react-redux';
-import {addMovies} from './actionCreators';
+import { Route, Routes, Link } from "react-router-dom";
+import BlockedMoviesPage from "./containers/BlockedMoviesPage";
+import { useEffect } from "react";
+import { API_URL, API_KEY } from "./constants";
+import { connect } from "react-redux";
+import { addMovies } from "./actionCreators";
 
-const App=({addMovies}) =>{
+const App = ({ addMovies }) => {
   // useEffect(()=>{
   //   let fetchData = async ()=>{
   //     let res = await fetch(`${API_URL}${API_KEY}&&page=1`);
@@ -19,28 +19,31 @@ const App=({addMovies}) =>{
   //   .catch(err=>console.log(err))
   // }, [])
 
-  return (  
+  return (
     <>
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/blocked">Books</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/blocked">Books</Link>
+          </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path="/" element={<div>homePage</div>} />
-        <Route path="/blocked" element={<BlockedMoviesPage/>} />
+        <Route path="/blocked" element={<BlockedMoviesPage />} />
       </Routes>
     </>
-
   );
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addMovies: (moviesData) => dispatch(addMovies(moviesData))
-  }
-}
+    addMovies: (moviesData) => dispatch(addMovies(moviesData)),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(App);
