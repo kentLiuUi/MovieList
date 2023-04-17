@@ -1,10 +1,11 @@
 import BlockedMoviesGrid from '../components/BlockedMoviesGrid';
+import './style.css';
 
 export default () => {
     return(
-        <>
-            <div>Blocked Movies</div>
+        <div className='blockedMoviesPage'>
+            <div className='blockedMoviesPageTitle'>Blocked Movies</div>
             <BlockedMoviesGrid/>
-        </>
+        </div>
     )
 }

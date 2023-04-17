@@ -10,7 +10,7 @@ const BlockedMoviesCard = ({movieId, likedMovies}) => {
         return(
             <div className='blockedMoviesCard'>
                 <img src={`${POSTER_BASE_URL}${curMovie.poster_path}`} alt="movie poster"/>
-                <LikedMoviesCardHover/>
+                <LikedMoviesCardHover movieId={movieId}/>
             </div>
         )
     }

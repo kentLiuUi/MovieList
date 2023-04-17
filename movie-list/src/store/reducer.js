@@ -7,7 +7,7 @@ const initialState = {
 
 const reducer = (state=initialState, action) => {
     switch(action.type) {
-        case "ADD_MOVIES":
+        case "ADD_MOVIES":{
             let newMovies ={}
             for(let item of action.payload.results){
                 newMovies[item.id] = item
@@ -23,9 +23,17 @@ const reducer = (state=initialState, action) => {
                     ...state.likedMovies,
                     ...newMovies,
                 },
-                blockedMovies:{},
+                blockedMovies:{
+                    ...state.likedMovies,
+                    ...newMovies,
+                },
             }
+        }
 
+        case "REMOVE_BLOCKED_MOVIE":{
+            
+        }
+        
  
         default:
             return state

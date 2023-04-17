@@ -5,19 +5,19 @@ import { API_URL, API_KEY } from "./constants";
 import { connect } from "react-redux";
 import { addMovies } from "./actionCreators";
 
-const App = ({ addMovies }) => {
-  // useEffect(()=>{
-  //   let fetchData = async ()=>{
-  //     let res = await fetch(`${API_URL}${API_KEY}&&page=1`);
-  //     // console.log(`${API_URL}${API_KEY}&&page=1`)
-  //     let data = await res.json();
-  //     console.log(data);
+const App=({addMovies}) =>{
+  useEffect(()=>{
+    let fetchData = async ()=>{
+      let res = await fetch(`${API_URL}${API_KEY}&&page=1`);
+      // console.log(`${API_URL}${API_KEY}&&page=1`)
+      let data = await res.json();
+      console.log(data);
 
-  //     addMovies(data);
-  //   }
-  //   fetchData()
-  //   .catch(err=>console.log(err))
-  // }, [])
+      addMovies(data);
+    }
+    fetchData()
+    .catch(err=>console.log(err))
+  }, [])
 
   return (
     <>
