@@ -1,5 +1,6 @@
 import { Route, Routes, Link } from "react-router-dom";
 import BlockedMoviesPage from "./containers/BlockedMoviesPage";
+import LikedMoviesPage from "./containers/LikedMoviesPage";
 import { useEffect } from "react";
 import { API_URL, API_KEY } from "./constants";
 import { connect } from "react-redux";
@@ -27,7 +28,10 @@ const App=({addMovies}) =>{
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/blocked">Books</Link>
+            <Link to="/blocked">Blocked Movies Page</Link>
+          </li>
+          <li>
+            <Link to="/liked">Liked Movies Page</Link>
           </li>
         </ul>
       </nav>
@@ -35,6 +39,7 @@ const App=({addMovies}) =>{
       <Routes>
         <Route path="/" element={<div>homePage</div>} />
         <Route path="/blocked" element={<BlockedMoviesPage />} />
+        <Route path='/liked' element={<LikedMoviesPage />}/>
       </Routes>
     </>
   );
