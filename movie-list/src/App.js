@@ -1,40 +1,44 @@
 import { Route, Routes, Link } from "react-router-dom";
 import BlockedMoviesPage from "./containers/BlockedMoviesPage";
+import LikedMoviesPage from "./containers/LikedMoviesPage";
 import { useEffect } from "react";
 import { API_URL, API_KEY } from "./constants";
 import { connect } from "react-redux";
 import { addMovies } from "./actionCreators";
+import HomePage from "./HomePage";
 
-const App = ({ addMovies }) => {
-  // useEffect(()=>{
-  //   let fetchData = async ()=>{
-  //     let res = await fetch(`${API_URL}${API_KEY}&&page=1`);
-  //     // console.log(`${API_URL}${API_KEY}&&page=1`)
-  //     let data = await res.json();
-  //     console.log(data);
+const App=({addMovies}) =>{
+  useEffect(()=>{
+    let fetchData = async ()=>{
+      let res = await fetch(`${API_URL}${API_KEY}&&page=1`);
+      // console.log(`${API_URL}${API_KEY}&&page=1`)
+      let data = await res.json();
+      console.log(data);
 
-  //     addMovies(data);
-  //   }
-  //   fetchData()
-  //   .catch(err=>console.log(err))
-  // }, [])
+      addMovies(data);
+    }
+    fetchData()
+    .catch(err=>console.log(err))
+  }, [])
 
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/blocked">Books</Link>
-          </li>
-        </ul>
-      </nav>
-
       <Routes>
-        <Route path="/" element={<div>homePage</div>} />
-        <Route path="/blocked" element={<BlockedMoviesPage />} />
+        {/* <Route path="/" element={<div><HomePage/></div>} /> */}
+        {/* <Route path="/" element={<BlockedMoviesPage />} /> */}
+        <Route path='/' element={
+          <HomePage/>
+        } />
+        <Route path='/blocked' element={
+          <HomePage>
+            <BlockedMoviesPage />
+          </HomePage>
+        } />
+        <Route path='/liked' element={
+          <HomePage>
+            <LikedMoviesPage />
+          </HomePage>
+          }/>
       </Routes>
     </>
   );
