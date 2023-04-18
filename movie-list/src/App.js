@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { API_URL, API_KEY } from "./constants";
 import { connect } from "react-redux";
 import { addMovies } from "./actionCreators";
+import HomePage from "./HomePage";
 
 const App=({addMovies}) =>{
   useEffect(()=>{
@@ -22,24 +23,22 @@ const App=({addMovies}) =>{
 
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/blocked">Blocked Movies Page</Link>
-          </li>
-          <li>
-            <Link to="/liked">Liked Movies Page</Link>
-          </li>
-        </ul>
-      </nav>
-
       <Routes>
-        <Route path="/" element={<div>homePage</div>} />
-        <Route path="/blocked" element={<BlockedMoviesPage />} />
-        <Route path='/liked' element={<LikedMoviesPage />}/>
+        {/* <Route path="/" element={<div><HomePage/></div>} /> */}
+        {/* <Route path="/" element={<BlockedMoviesPage />} /> */}
+        <Route path='/' element={
+          <HomePage/>
+        } />
+        <Route path='/blocked' element={
+          <HomePage>
+            <BlockedMoviesPage />
+          </HomePage>
+        } />
+        <Route path='/liked' element={
+          <HomePage>
+            <LikedMoviesPage />
+          </HomePage>
+          }/>
       </Routes>
     </>
   );

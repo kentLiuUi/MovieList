@@ -11,7 +11,7 @@ const MoviesGrid = ({pageType, blockedMovies, likedMovies}) => {
                 <div className='likedMoviesGrid moviesGrid'>   
                     {Object.keys(likedMovies).map((curId)=>{
                         return(
-                            <MoviesCard movieId={curId} pageType={pageType}/>
+                            <MoviesCard key={curId} movieId={curId} pageType={pageType}/>
                         )
                     })}
                     {/* <BlockedMoviesCard movieId="76600"/>
@@ -25,7 +25,7 @@ const MoviesGrid = ({pageType, blockedMovies, likedMovies}) => {
                 <div className='blockedMoviesGrid moviesGrid'>   
                     {Object.keys(blockedMovies).map((curId)=>{
                         return(
-                            <MoviesCard movieId={curId}  pageType={pageType}/>
+                            <MoviesCard key={curId} movieId={curId}  pageType={pageType}/>
                         )
                     })}
                     {/* <BlockedMoviesCard movieId="76600"/>

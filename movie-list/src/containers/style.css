@@ -1,12 +1,12 @@
 .moviesPage {
-    background-color: rgb(0, 0, 0, 0.8);
+    /* background-color: rgb(0, 0, 0, 0.8); */
     height: 100%;
     padding-inline: 130px;
     padding-block: 50px;
 }
 
 .moviesPageTitle {
-    padding-block: 40px;
+    padding-bottom: 40px;
     color: white;
     font-family: Poppins;
     font-weight: 400;
