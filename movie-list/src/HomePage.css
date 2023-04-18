@@ -9,7 +9,7 @@
     background-size: cover;
     /* background-position:  */
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
+    background-attachment: fixed;
   }
   
   /* 设置透明黑色层 */
@@ -50,7 +50,7 @@
   }
   
   .nav-button {
-    color: #fff;
+    color: #fff; /* 设置字体颜色为白色 */
     background-color: transparent;
     border: none;
     outline: none;
@@ -60,6 +60,17 @@
     font-size: 1rem;
     text-decoration: none;
     position: relative;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    background: transparent; /* 将默认背景颜色设为透明 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #fff; /* 设置字体颜色为白色 */
+    background-clip: text;
+    text-fill-color: #fff; /* 设置字体颜色为白色 */
   }
   
   .nav-button::after {
@@ -67,11 +78,20 @@
     display: block;
     width: 0;
     height: 2px;
-    background-color: #fff;
+    background-color: #01b4e4; /* 设置下划线颜色为蓝色 */
     position: absolute;
     bottom: -2px;
     left: 0;
     transition: width 0.2s;
+  }
+
+  .nav-button:hover {
+    color: #01b4e4; /* 设置hover状态下的字体颜色为蓝色 */
+    background: linear-gradient(90deg, #90cea1 -10%, #01b4e4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
   }
   
   .nav-button:hover::after {
@@ -80,7 +100,7 @@
   
   /* 设置图标样式 */
   .icon-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   
   .icon {

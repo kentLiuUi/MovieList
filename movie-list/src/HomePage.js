@@ -18,7 +18,7 @@ const App = (props) => {
         const data = await response.json();
         if (data.results && data.results.length > 0) {
           // 从 API 返回的结果中获取第一张图片的 URL
-          const url = `https://image.tmdb.org/t/p/w500/${data.results[0].poster_path}`;
+          const url = `https://image.tmdb.org/t/p/w500/${data.results[0].backdrop_path}`;
           setBackgroundImage(url);
         }
       } catch (error) {
