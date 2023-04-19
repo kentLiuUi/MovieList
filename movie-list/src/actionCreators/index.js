@@ -22,3 +22,8 @@ export const removeLikedMovie = (movieId) => ({
     type: "REMOVE_LIKED_MOVIE",
     movieId
 })
+
+export const addGenreList = (genreList) =>({
+    type: "ADD_GENRE_LIST",
+    genreList
+})

@@ -3,6 +3,7 @@ const initialState = {
     movies: {},
     likedMovies: {},
     blockedMovies: {},
+    genreList:{},
 }
 
 const reducer = (state=initialState, action) => {
@@ -72,7 +73,15 @@ const reducer = (state=initialState, action) => {
                 }
             }
         }
- 
+        
+        case "ADD_GENRE_LIST":{
+            return{
+                ...state,
+                genreList: {
+                    ...action.genreList
+                }
+            }
+        }
         default:
             return state
     }
