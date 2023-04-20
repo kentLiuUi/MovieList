@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./HomePage.css";
+//import "./HomePage.css"
+import "./HomePage.sass"
 import TMDB_logo from './assets/TMDB-logo.png';
 import {useNavigate} from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
 
 const App = (props) => {
   const [backgroundImage, setBackgroundImage] = useState("");
@@ -9,6 +12,9 @@ const App = (props) => {
   const BASE_URL = "https://api.themoviedb.org/4/";
   const fetchUrl = `${BASE_URL}discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`;
   let navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
+
 
   useEffect(() => {
     // 从 API 获取第一张图片
@@ -39,8 +45,8 @@ const App = (props) => {
         <nav className="navbar">
           <div className="navbar-container">
             <div className="navbar-left">
-              <button onClick={()=>navigate("/")} className="nav-button">Home</button>
-              <button onClick={()=>navigate("/movieList")} className="nav-button">Movie List</button>
+              <button onClick={()=>navigate("/")} className="nav-button" id={path === "/" ? "blue" : ""}>Home</button>
+              <button onClick={()=>navigate("/movieList")} className="nav-button" id={path === "/movieList" ? "blue" : ""}>Movie List</button>
             </div>
             <div className="icon-container">
               <img
@@ -50,8 +56,8 @@ const App = (props) => {
               />
             </div>
             <div className="navbar-right">
-              <button onClick={()=>navigate("/liked")} className="nav-button">Liked</button>
-              <button onClick={()=>navigate("/blocked")} className="nav-button">Blocked</button>
+              <button onClick={()=>navigate("/liked")} className="nav-button" id={path === "/liked" ? "blue" : ""}>Liked</button>
+              <button onClick={()=>navigate("/blocked")} className="nav-button" id={path === "/blocked" ? "blue" : ""}>Blocked</button>
             </div>
           </div>
         </nav>
