@@ -6,7 +6,7 @@ const MoviesCard = (props) => {
     console.log('MoviesCard props', props);
     const {pageType, movieId, blockedMovies, likedMovies} = props;
     // console.log(movieId)
-    console.log('card', likedMovies);
+    // console.log('card', likedMovies);
     switch (pageType) {
         case 'liked':{
             let curMovie = likedMovies[movieId];
