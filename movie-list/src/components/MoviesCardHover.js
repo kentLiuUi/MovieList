@@ -55,9 +55,9 @@ const MoviesCardHover =({pageType, movieId, movies, likedMovies, blockedMovies, 
 }
 
 const mapStatesToProps = (state) => ({
-    movies: state.movies,
-    blockedMovies: state.blockedMovies,
-    likedMovies: state.likedMovies,
+    movies: state.moviesPageReducer.movies,
+    blockedMovies: state.moviesPageReducer.blockedMovies,
+    likedMovies: state.moviesPageReducer.likedMovies,
 })
 
 const mapDispatchToProps = (dispatch) => ({

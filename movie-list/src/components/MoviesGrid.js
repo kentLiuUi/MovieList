@@ -41,7 +41,7 @@ const MoviesGrid = ({pageType, blockedMovies, likedMovies}) => {
 }
 
 const mapStatesToProps = (state) => ({
-    blockedMovies: state.blockedMovies,
-    likedMovies: state.likedMovies
+    blockedMovies: state.moviesPageReducer.blockedMovies,
+    likedMovies: state.moviesPageReducer.likedMovies
 })
 export default connect(mapStatesToProps)(MoviesGrid);
