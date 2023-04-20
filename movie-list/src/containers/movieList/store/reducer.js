@@ -58,6 +58,55 @@ const moviesReducer = (state = initialState, action) => {
                 },
             }
         }
+
+
+        // case "REMOVE_BLOCKED_MOVIE":{
+        //     let updatedBlockedMovies = state.blockedMovies;
+        //     delete updatedBlockedMovies[action.movieId];
+
+        //     return {
+        //         ...state,
+        //         // blockedMovies: updatedBlockedMovies,
+        //         blockedMovies: {
+        //             ...updatedBlockedMovies
+        //         },
+        //     }
+        // }
+        // case "REMOVE_LIKED_MOVIE":{
+        //     let updatedLikedMovies = state.likedMovies;
+        //     delete updatedLikedMovies[action.movieId];
+
+        //     return {
+        //         ...state,
+        //         // blockedMovies: updatedBlockedMovies,
+        //         likedMovies: {
+        //             ...updatedLikedMovies
+        //         },
+
+        //     }
+        // }
+        // case "ADD_LIKED_MOVIE":{
+        //     console.log("1111 ADD_LIKED_MOVIE action", action);
+        //     console.log("1111 ADD_LIKED_MOVIE state", state);
+        //     return{
+        //         ...state,
+
+        //         likedMovies:{
+        //             ...state.likedMovies,
+        //             [action.movieId]: state.movies[action.movieId]
+        //         }
+        //     }
+        // }
+        // case "ADD_BLOCKED_MOVIE":{
+        //     return{
+        //         ...state,
+        //         blockedMovies:{
+        //             ...state.blockedMovies,
+        //             [action.movieId]: state.movies[action.movieId]
+        //         }
+        //     }
+        // }
+
         default:
             return state;
     }
