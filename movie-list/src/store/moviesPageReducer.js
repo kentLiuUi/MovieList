@@ -58,8 +58,8 @@ const moviesPageReducer = (state=initialState, action) => {
             }
         }
         case "ADD_LIKED_MOVIE":{
-            console.log("1111 ADD_LIKED_MOVIE action", action);
-            console.log("1111 ADD_LIKED_MOVIE state", state);
+            // console.log("1111 ADD_LIKED_MOVIE action", action);
+            // console.log("1111 ADD_LIKED_MOVIE state", state);
             return{
                 ...state,
 
