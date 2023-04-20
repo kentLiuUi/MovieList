@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+// import MovieCard from "../../components/MoviesCard.js";
 import { connect } from "react-redux";
 import "./MovieList.css";
 import { ADD_MOVIES, ADD_LIKED_MOVIE, REMOVE_LIKED_MOVIE, ADD_BLOCKED_MOVIE, REMOVE_BLOCKED_MOVIE } from '../../constants';
@@ -50,6 +51,7 @@ const MovieList = (props) => {
             // console.log("page", page, "currentPage", currentPage);
             if (page === 'page_' + currentPage) {
                 return props.movies[page].map((movie) => <MovieCard key={movie.id} movie={movie} 
+                likedMovies={props.likedMovies} blockedMovies={props.blockedMovies}
                 addLikedMovie={props.addLikedMovie} removeLikedMovie={props.removeLikedMovie} 
                 addBlockedMovie={props.addBlockedMovie} removeBlockedMovie={props.removeBlockedMovie} />);
             }

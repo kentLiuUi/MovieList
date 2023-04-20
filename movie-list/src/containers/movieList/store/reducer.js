@@ -14,8 +14,8 @@ const moviesReducer = (state = initialState, action) => {
 
             };
         case ADD_LIKED_MOVIE: {
-            console.log("ADD_LIKED_MOVIE action", action);
-            console.log("ADD_LIKED_MOVIE state", state);
+            // console.log("ADD_LIKED_MOVIE action", action);
+            // console.log("ADD_LIKED_MOVIE state", state);
             return {
                 ...state,
                 likedMovies: {
