@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchData } from "../redux";
+import { fetchData } from "../redux/DetailReducer";
 
 const imageUrl = "https://image.tmdb.org/t/p/w500";
 

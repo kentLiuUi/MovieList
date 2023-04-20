@@ -2,14 +2,14 @@ import "../DetailPage.css";
 import React, { useEffect } from "react";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import dataReducer from "../redux";
-import { fetchData } from "../redux";
+import dataReducer from "../redux/DetailReducer";
+import { fetchData } from "../redux/DetailReducer";
 import {
   ConnectedMoviePoster,
   ConnectedMovieTitle,
   ConnectedMovieRating,
   ConnectedReleaseDate,
-  ConnectedMovieOverviews,
+  ConnectedMovieOverview,
   //   ConnectedProductionCompanies,
 } from "./DetailPage";
 
