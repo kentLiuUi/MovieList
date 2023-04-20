@@ -8,29 +8,29 @@ const initialState = {
 
 const moviesPageReducer = (state=initialState, action) => {
     switch(action.type) {
-        case "ADD_MOVIES":{
-            let newMovies ={}
-            for(let item of action.payload.results){
-                newMovies[item.id] = item
-            }
-            return {
-                ...state,
+        // case "ADD_MOVIES":{
+        //     let newMovies ={}
+        //     for(let item of action.payload.results){
+        //         newMovies[item.id] = item
+        //     }
+        //     return {
+        //         ...state,
         
-                page: action.payload.page,
-                movies:{
-                    ...state.movies,
-                    ...newMovies
-                },
-                likedMovies:{
-                    ...state.likedMovies,
-                    ...newMovies,
-                },
-                blockedMovies:{
-                    ...state.likedMovies,
-                    ...newMovies,
-                },
-            }
-        }
+        //         page: action.payload.page,
+        //         movies:{
+        //             ...state.movies,
+        //             ...newMovies
+        //         },
+        //         likedMovies:{
+        //             ...state.likedMovies,
+        //             ...newMovies,
+        //         },
+        //         blockedMovies:{
+        //             ...state.likedMovies,
+        //             ...newMovies,
+        //         },
+        //     }
+        // }
 
         case "REMOVE_BLOCKED_MOVIE":{
             let updatedBlockedMovies = state.blockedMovies;
@@ -58,6 +58,8 @@ const moviesPageReducer = (state=initialState, action) => {
             }
         }
         case "ADD_LIKED_MOVIE":{
+            console.log("1111 ADD_LIKED_MOVIE action", action);
+            console.log("1111 ADD_LIKED_MOVIE state", state);
             return{
                 ...state,
 

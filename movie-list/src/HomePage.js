@@ -40,7 +40,7 @@ const App = (props) => {
           <div className="navbar-container">
             <div className="navbar-left">
               <button onClick={()=>navigate("/")} className="nav-button">Home</button>
-              <button onClick={()=>navigate("/")} className="nav-button">Movie List</button>
+              <button onClick={()=>navigate("/movieList")} className="nav-button">Movie List</button>
             </div>
             <div className="icon-container">
               <img

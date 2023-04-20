@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
 import moviesPageReducer from "./moviesPageReducer";
 import detailPageReducer from "../containers/DetailPage/redux/DetailReducer";
+import moviesReducer from '../containers/movieList/store/reducer';
+
 
 const rootReducer = combineReducers({
     moviesPageReducer,
-    detailPageReducer
+    detailPageReducer,
+    movieList: moviesReducer,
 })
 export default rootReducer;
 
