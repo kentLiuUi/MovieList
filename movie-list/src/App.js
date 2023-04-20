@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { addMovies, addGenreList } from "./actionCreators";
 import HomePage from "./HomePage";
 import DetailPage from './containers/DetailPage/components/DetailPageContainer';
-import MovieList from './containers/movieList/MovieList';
+import MovieList from './containers/movieList/components/MovieList';
 
 const App=({addMovies, genreList, addGenreList}) =>{
   useEffect(()=>{

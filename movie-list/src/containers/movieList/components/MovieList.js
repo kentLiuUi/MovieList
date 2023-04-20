@@ -3,9 +3,9 @@ import axios from "axios";
 import MovieCard from "./MovieCard";
 // import MovieCard from "../../components/MoviesCard.js";
 import { connect } from "react-redux";
-import "./MovieList.css";
-import { ADD_MOVIES, ADD_LIKED_MOVIE, REMOVE_LIKED_MOVIE, ADD_BLOCKED_MOVIE, REMOVE_BLOCKED_MOVIE } from '../../constants';
-import { actions } from './store/actionCreator';
+import "../MovieList.css";
+import { ADD_MOVIES, ADD_LIKED_MOVIE, REMOVE_LIKED_MOVIE, ADD_BLOCKED_MOVIE, REMOVE_BLOCKED_MOVIE } from '../../../constants';
+import { actions } from '../store/actionCreator';
 
 const MovieList = (props) => {
     // const [movies, setMovies] = useState([]);

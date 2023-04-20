@@ -1,4 +1,4 @@
-
+import {useNavigate} from 'react-router-dom';
 import React, { useState } from 'react';
 
 
@@ -8,9 +8,10 @@ const MovieCard = (props) => {
     const [isBlocked, setIsBlocked] = useState(false);
     const { movie } = props;
     const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    const navigate = useNavigate();
 
     return (
-        <div className="card" style={{display:(movie.id in props.blockedMovies)?'none':''}}>
+        <div className="card" style={{display:(movie.id in props.blockedMovies)?'none':''}} >
             <div className="overlay">
                 <div>
                     <h4>{movie.title}</h4>
@@ -27,7 +28,8 @@ const MovieCard = (props) => {
                     }}>Block</button>
                 </div>
             </div>
-            <img src={imageUrl} alt={movie.title} />
+            <img src={imageUrl} alt={movie.title} onClick={()=>navigate(`/detail/${movie.id}`)} />
+            <p onClick={()=>navigate(`/detail/${movie.id}`)}>{movie.title}</p>
         </div>
     );
 };
