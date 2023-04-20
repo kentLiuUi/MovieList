@@ -1,10 +1,13 @@
-import BlockedMoviesGrid from '../components/BlockedMoviesGrid';
+import BlockedMoviesGrid from '../components/MoviesGrid';
+import './style.css';
 
-export default () => {
+const BlockedMoviesPage = () => {
     return(
-        <>
-            <div>Blocked Movies</div>
-            <BlockedMoviesGrid/>
-        </>
+        <div className='blockedMoviesPage moviesPage'>
+            <div className='blockedMoviesPageTitle moviesPageTitle'>Blocked Movies</div>
+            <BlockedMoviesGrid pageType="blocked"/>
+        </div>
     )
 }
+
+export default BlockedMoviesPage;
