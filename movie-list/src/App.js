@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { addMovies, addGenreList } from "./actionCreators";
 import HomePage from "./HomePage";
 import DetailPage from './containers/DetailPage/components/DetailPageContainer';
+import MovieList from './containers/movieList/MovieList';
 
 const App=({addMovies, genreList, addGenreList}) =>{
   useEffect(()=>{
@@ -64,6 +65,11 @@ const App=({addMovies, genreList, addGenreList}) =>{
         {/* <Route path="/" element={<BlockedMoviesPage />} /> */}
         <Route path='/' element={
           <HomePage/>
+        } />
+        <Route path='/movieList' element={
+          <HomePage>
+            <MovieList />
+          </HomePage>
         } />
         <Route path='/blocked' element={
           <HomePage>
