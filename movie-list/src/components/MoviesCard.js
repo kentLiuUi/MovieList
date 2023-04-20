@@ -36,8 +36,8 @@ const MoviesCard = ({pageType, movieId, blockedMovies, likedMovies}) => {
 }
 
 const mapStateToProps = (state) => ({
-    blockedMovies: state.blockedMovies,
-    likedMovies: state.likedMovies
+    blockedMovies: state.moviesPageReducer.blockedMovies,
+    likedMovies: state.moviesPageReducer.likedMovies
 })
 
 export default connect(mapStateToProps)(MoviesCard);

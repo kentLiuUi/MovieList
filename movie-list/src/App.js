@@ -6,6 +6,7 @@ import { API_URL, API_KEY, MOVIE_GENRE_URL, GENRE_COLORS, TV_GENRE_URL } from ".
 import { connect } from "react-redux";
 import { addMovies, addGenreList } from "./actionCreators";
 import HomePage from "./HomePage";
+import DetailPage from './containers/DetailPage/components/DetailPageContainer';
 
 const App=({addMovies, genreList, addGenreList}) =>{
   useEffect(()=>{
@@ -73,14 +74,20 @@ const App=({addMovies, genreList, addGenreList}) =>{
           <HomePage>
             <LikedMoviesPage />
           </HomePage>
-          }/>
+        }/>
+        <Route path='/detail' element={
+          <HomePage>
+            {/* <DetailPage /> */}
+          </HomePage>
+        }/>
+
       </Routes>
     </>
   );
 };
 
 const mapStatesToProps = (state) => ({
-  genreList: state.genreList
+  genreList: state.moviesPageReducer.genreList
 })
 
 const mapDispatchToProps = (dispatch) => {
