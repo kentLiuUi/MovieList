@@ -11,30 +11,34 @@ const MoviesCardHover =({pageType, movieId, movies, likedMovies, blockedMovies, 
         // console.log('likedMovies', likedMovies);
         // console.log('blockedMovies', blockedMovies);
 
-        removeBlockedMovie(movieId);
+
         if(!likedMovies.hasOwnProperty(movieId)){
-            addLikedMovie(movieId)
+            addLikedMovie(movieId, blockedMovies[movieId]);
         }else{
             console.log("Movie already exists in liked movies list"); 
         }
+        removeBlockedMovie(movieId);
     }
     const blockMovie = (movieId,movies, likedMovies, blockedMovies) => {
         // console.log('movies', movies);
         // console.log('likedMovies', likedMovies);
         // console.log('blockedMovies', blockedMovies);
-        removeLikedMovie(movieId);
+
+        console.log('blockMovie', likedMovies[movieId]);
         if(!blockedMovies.hasOwnProperty(movieId)){
-            addBlockedMovie(movieId)
+            addBlockedMovie(movieId, likedMovies[movieId]);
         }else{
             console.log("Movie already exists in blocked movies list");
         }
+
+        removeLikedMovie(movieId);
     }
 
     switch (pageType) {
         case 'liked':{
             return(
                 <div className='likedMoviesCardHover moviesCardHover'>
-                    <FontAwesomeIcon title="like this movie" onClick={()=>blockMovie(movieId, movies, likedMovies, blockedMovies)} icon={faBan} style={{ color: "#ffffff" }}/>
+                    <FontAwesomeIcon title="block this movie" onClick={()=>blockMovie(movieId, movies, likedMovies, blockedMovies)} icon={faBan} style={{ color: "#ffffff" }}/>
                     <FontAwesomeIcon title="remove from blocked movies list" onClick={()=>removeLikedMovie(movieId)} icon={faTrashCan} style={{ color: "#ffffff" }}/>
                 </div>
             )
@@ -55,16 +59,16 @@ const MoviesCardHover =({pageType, movieId, movies, likedMovies, blockedMovies, 
 }
 
 const mapStatesToProps = (state) => ({
-    movies: state.movies,
-    blockedMovies: state.blockedMovies,
-    likedMovies: state.likedMovies,
+    movies: state.movieList.movies,
+    blockedMovies: state.movieList.blockedMovies,
+    likedMovies: state.movieList.likedMovies,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     removeLikedMovie: (movieId) =>dispatch(removeLikedMovie(movieId)),
     removeBlockedMovie: (movieId) =>dispatch(removeBlockedMovie(movieId)),
-    addLikedMovie: (movieId) =>dispatch(addLikedMovie(movieId)),
-    addBlockedMovie: (movieId) =>dispatch(addBlockedMovie(movieId))
+    addLikedMovie: (movieId, movie) =>dispatch(addLikedMovie(movieId, movie)),
+    addBlockedMovie: (movieId, movie) =>dispatch(addBlockedMovie(movieId, movie))
 })
 
 export default connect(mapStatesToProps, mapDispatchToProps)(MoviesCardHover);

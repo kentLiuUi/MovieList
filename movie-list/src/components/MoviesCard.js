@@ -2,7 +2,9 @@ import {POSTER_BASE_URL} from '../constants';
 import { connect } from 'react-redux';
 import MoviesCardHover from './MoviesCardHover';
 
-const MoviesCard = ({pageType, movieId, blockedMovies, likedMovies}) => {
+const MoviesCard = (props) => {
+    console.log('MoviesCard props', props);
+    const {pageType, movieId, blockedMovies, likedMovies} = props;
     // console.log(movieId)
     // console.log('card', likedMovies);
     switch (pageType) {
@@ -36,8 +38,8 @@ const MoviesCard = ({pageType, movieId, blockedMovies, likedMovies}) => {
 }
 
 const mapStateToProps = (state) => ({
-    blockedMovies: state.blockedMovies,
-    likedMovies: state.likedMovies
+    blockedMovies: state.movieList.blockedMovies,
+    likedMovies: state.movieList.likedMovies
 })
 
 export default connect(mapStateToProps)(MoviesCard);

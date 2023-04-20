@@ -3,14 +3,16 @@ export const addMovies = (payload) => ({
     payload
 })
 
-export const addLikedMovie = (movieId) => ({
+export const addLikedMovie = (movieId, movie) => ({
     type: "ADD_LIKED_MOVIE",
-    movieId
+    movieId,
+    movie
 })
 
-export const addBlockedMovie = (movieId) => ({
+export const addBlockedMovie = (movieId, movie) => ({
     type: "ADD_BLOCKED_MOVIE",
-    movieId
+    movieId,
+    movie
 })
 
 export const removeBlockedMovie = (movieId) => ({
@@ -21,4 +23,9 @@ export const removeBlockedMovie = (movieId) => ({
 export const removeLikedMovie = (movieId) => ({
     type: "REMOVE_LIKED_MOVIE",
     movieId
+})
+
+export const addGenreList = (genreList) =>({
+    type: "ADD_GENRE_LIST",
+    genreList
 })
