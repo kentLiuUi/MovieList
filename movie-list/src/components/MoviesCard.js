@@ -2,6 +2,7 @@ import {POSTER_BASE_URL} from '../constants';
 import { connect } from 'react-redux';
 import MoviesCardHover from './MoviesCardHover';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MoviesCard = (props) => {
     console.log('MoviesCard props', props);
@@ -43,5 +44,12 @@ const mapStateToProps = (state) => ({
     blockedMovies: state.movieList.blockedMovies,
     likedMovies: state.movieList.likedMovies
 })
+
+MoviesCard.propTypes = {
+    pageType: PropTypes.oneOf(['liked', 'blocked']).isRequired,
+    movieId: PropTypes.string.isRequired,
+    blockedMovies: PropTypes.object.isRequired,
+    likedMovies: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(MoviesCard);

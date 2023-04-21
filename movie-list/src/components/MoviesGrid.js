@@ -1,6 +1,7 @@
 import MoviesCard from './MoviesCard';
 import './style.css';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const MoviesGrid = ({ pageType, blockedMovies, likedMovies }) => {
     // console.log('blockedMoviesGrid-blockedMovies', blockedMovies);
@@ -51,5 +52,11 @@ const mapStatesToProps = (state) => {
         blockedMovies: state.movieList.blockedMovies,
         likedMovies: state.movieList.likedMovies,
     }
+}
+
+MoviesGrid.propTypes = {
+    pageType: PropTypes.oneOf(['liked', 'blocked']).isRequired,
+    blockedMovies: PropTypes.object.isRequired,
+    likedMovies: PropTypes.object.isRequired
 }
 export default connect(mapStatesToProps)(MoviesGrid);
