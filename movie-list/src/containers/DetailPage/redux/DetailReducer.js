@@ -1,5 +1,4 @@
-// action
-export const SET_DETAIL_DATA = "SET_DETAIL_DATA";
+import { SET_DETAIL_DATA } from "../../../constants";
 
 // action creators
 export function setDetailData(detailData) {

@@ -66,13 +66,6 @@ const App = (props) => {
             </div>
             <div className="navbar-right">
               <button
-                onClick={() => navigate("/detail")}
-                className="nav-button"
-                id={path === "/detail" ? "blue" : ""}
-              >
-                Detail
-              </button>
-              <button
                 onClick={() => navigate("/liked")}
                 className="nav-button"
                 id={path === "/liked" ? "blue" : ""}
