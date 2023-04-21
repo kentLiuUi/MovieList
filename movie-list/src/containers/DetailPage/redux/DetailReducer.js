@@ -15,7 +15,7 @@ const initialState = {
 };
 
 // reducer
-const detailePageReducer = (state = initialState, action) => {
+const detailPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DETAIL_DATA:
       return {
@@ -27,4 +27,4 @@ const detailePageReducer = (state = initialState, action) => {
   }
 };
 
-export default detailePageReducer;
+export default detailPageReducer;

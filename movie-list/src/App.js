@@ -91,12 +91,8 @@ const App = ({ addMovies, genreList, addGenreList }) => {
           }
         />
         <Route
-          path="/detail"
-          element={
-            <HomePage>
-              <DetailPage />
-            </HomePage>
-          }
+          path="/detail/:movieId"
+          element={<DetailPage />}
         />
       </Routes>
     </>

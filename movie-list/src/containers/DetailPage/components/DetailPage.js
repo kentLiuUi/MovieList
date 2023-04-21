@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { setDetailData } from "../redux/DetailReducer";
+import { useParams } from "react-router-dom";
+import '../DetailPage.sass';
 
 function DetailPage(props) {
   const { detailData, setDetailData } = props;
-
+  let {movieId} = useParams();
   useEffect(() => {
+    console.log(movieId);
     fetch(
-      "https://api.themoviedb.org/3/movie/502356?api_key=cf5b35c889b9f92a5051a5c043a4ea36"
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=cf5b35c889b9f92a5051a5c043a4ea36`
     )
       .then((response) => response.json())
-      .then((data) => setDetailData(data));
-  }, [setDetailData]);
+      .then((data) => setDetailData(data))
+  }, []);
 
   if (!detailData) {
     return <p>Loading...</p>;
@@ -115,13 +118,18 @@ function DetailPage(props) {
 }
 
 function mapStateToProps(state) {
+  console.log('mapStatesToProps', state)
   return {
-    detailData: state.detailData,
+    detailData: state.detailPageReducer.detailData,
   };
 }
 
 const mapDispatchToProps = {
   setDetailData,
 };
+
+// const mapDispatchToProps = (dispatch) => ({
+//   setDetailData: (detailData) => dispatch(setDetailData(detailData)),
+// })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);
