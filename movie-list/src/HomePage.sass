@@ -7,6 +7,8 @@
 // background-position:
  background-repeat: no-repeat
  background-attachment: fixed
+ filter: blur(10px)
+ 
 
 /* 设置透明黑色层 /
 .overlay
@@ -22,9 +24,9 @@
 /* 设置导航栏样式 */
 .navbar
  width: 100%
- padding: 1rem
+ padding: 2rem
  background-color: transparent
-// position: absolute
+ position: relative
 // top: 0
 // left: 0
 
@@ -32,13 +34,20 @@
  display: flex
  justify-content: space-between
  align-items: center
- padding-inline: 130px
+ position: absolute
+ top: 50%
+ left: 50%
+ transform: translate(-50%, -50%)
+
+ //padding-inline: 130px
 
 .navbar-left
  display: flex
+ transform: translate(-350px, 0%)
 
 .navbar-right
  display: flex
+ transform: translate(350px, 0%)
 
 .nav-button
  color: #fff 
@@ -84,7 +93,7 @@
 
 /* 设置图标样式 */
 .icon-container
- margin-top: 1rem
+ margin-top: 0rem
 
 .icon
  width: 173px
