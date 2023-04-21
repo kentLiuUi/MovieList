@@ -1,4 +1,4 @@
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
 
@@ -11,25 +11,27 @@ const MovieCard = (props) => {
     const navigate = useNavigate();
 
     return (
-        <div className="card" style={{display:(movie.id in props.blockedMovies)?'none':''}} >
-            <div className="MovieList_MovieCard_overlay">
-                <div>
-                    <p>{movie.overview}</p>
-                    <p>{movie.release_date}</p>
-                    <p>{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
+        <div className="card movieList_card" style={{ display: (movie.id in props.blockedMovies) ? 'none' : '' }} >
+            <div className='movieList_image_container'>
+                <div className="movieList_movieCard_overlay">
+                    <div>
+                        <p className='movieCard_overview'>{movie.overview.substring(0, 70)+'...'}</p>
+                        <p>{movie.release_date}</p>
+                        <p>{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
+                    </div>
+                    <div>
+                        <button className="btn btn-primary btn-sm" onClick={() => {
+                            (movie.id in props.likedMovies) ? props.removeLikedMovie(movie.id) : props.addLikedMovie(movie.id, movie)
+                        }}>{(movie.id in props.likedMovies) ? "Liked" : "Like"}
+                        </button>
+                        <button className="btn btn-primary btn-sm" onClick={() => {
+                            (movie.id in props.blockedMovies) ? props.removeBlockedMovie(movie.id) : props.addBlockedMovie(movie.id, movie)
+                        }}>Block</button>
+                    </div>
                 </div>
-                <div>
-                    <button onClick={() => {
-                        (movie.id in props.likedMovies) ? props.removeLikedMovie(movie.id) : props.addLikedMovie(movie.id, movie)
-                    }}>{(movie.id in props.likedMovies) ? "Liked" : "Like"}
-                    </button>
-                    <button onClick={() => {
-                        (movie.id in props.blockedMovies) ? props.removeBlockedMovie(movie.id) : props.addBlockedMovie(movie.id, movie)
-                    }}>Block</button>
-                </div>
+                <img src={imageUrl} alt={movie.title} onClick={() => navigate(`/detail/${movie.id}`)} />
             </div>
-            <img src={imageUrl} alt={movie.title} onClick={()=>navigate(`/detail/${movie.id}`)} />
-            <p onClick={()=>navigate(`/detail/${movie.id}`)}>{movie.title}</p>
+            <p className='movieCard_title' onClick={() => navigate(`/detail/${movie.id}`)}>{movie.title}</p>
         </div>
     );
 };
