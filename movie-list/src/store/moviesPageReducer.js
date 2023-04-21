@@ -54,7 +54,6 @@ const moviesPageReducer = (state=initialState, action) => {
         //         likedMovies: {
         //             ...updatedLikedMovies
         //         },
-
         //     }
         // }
         // case "ADD_LIKED_MOVIE":{
