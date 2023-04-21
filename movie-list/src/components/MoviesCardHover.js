@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faHeart, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { removeBlockedMovie, removeLikedMovie, addLikedMovie, addBlockedMovie } from '../actionCreators';
-
+import PropTypes from "prop-types";
 
 
 const MoviesCardHover =({pageType, movieId, movies, likedMovies, blockedMovies, removeBlockedMovie, removeLikedMovie, addLikedMovie, addBlockedMovie}) => {
@@ -70,5 +70,17 @@ const mapDispatchToProps = (dispatch) => ({
     addLikedMovie: (movieId, movie) =>dispatch(addLikedMovie(movieId, movie)),
     addBlockedMovie: (movieId, movie) =>dispatch(addBlockedMovie(movieId, movie))
 })
+
+MoviesCardHover.propTypes = {
+    pageType: PropTypes.string.isRequired,
+    movieId: PropTypes.string.isRequired,
+    movies: PropTypes.object.isRequired,
+    likedMovies: PropTypes.object.isRequired,
+    blockedMovies: PropTypes.object.isRequired,
+    removeBlockedMovie: PropTypes.func.isRequired,
+    removeLikedMovie: PropTypes.func.isRequired,
+    addLikedMovie: PropTypes.func.isRequired,
+    addBlockedMovie: PropTypes.func.isRequired
+}
 
 export default connect(mapStatesToProps, mapDispatchToProps)(MoviesCardHover);
