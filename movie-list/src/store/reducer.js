@@ -1,14 +1,13 @@
 import { combineReducers } from "redux";
 import moviesPageReducer from "./moviesPageReducer";
-import detailPageReducer from "../containers/DetailPage/redux/DetailReducer";
-import moviesReducer from '../containers/movieList/store/reducer';
-
+import detailePageReducer from "../containers/DetailPage/redux/DetailReducer";
+import moviesReducer from "../containers/movieList/store/reducer";
 
 const rootReducer = combineReducers({
-    moviesPageReducer,
-    detailPageReducer,
-    movieList: moviesReducer,
-})
+  moviesPageReducer,
+  detailePageReducer,
+  movieList: moviesReducer,
+});
 export default rootReducer;
 
 // const initialState = {
@@ -86,7 +85,7 @@ export default rootReducer;
 //                 }
 //             }
 //         }
-        
+
 //         case "ADD_GENRE_LIST":{
 //             return{
 //                 ...state,
@@ -100,4 +99,4 @@ export default rootReducer;
 //     }
 // }
 
-// export default moviesPageReducer; 
+// export default moviesPageReducer;

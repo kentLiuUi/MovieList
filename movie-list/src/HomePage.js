@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 //import "./HomePage.css"
-import "./HomePage.sass"
-import TMDB_logo from './assets/TMDB-logo.png';
-import {useNavigate} from 'react-router-dom';
+import "./HomePage.sass";
+import TMDB_logo from "./assets/TMDB-logo.png";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
 
 const App = (props) => {
   const [backgroundImage, setBackgroundImage] = useState("");
@@ -14,7 +13,6 @@ const App = (props) => {
   let navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
-
 
   useEffect(() => {
     // 从 API 获取第一张图片
@@ -40,13 +38,24 @@ const App = (props) => {
       className="background"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-
       <div className="overlay">
         <nav className="navbar">
           <div className="navbar-container">
             <div className="navbar-left">
-              <button onClick={()=>navigate("/")} className="nav-button" id={path === "/" ? "blue" : ""}>Home</button>
-              <button onClick={()=>navigate("/movieList")} className="nav-button" id={path === "/movieList" ? "blue" : ""}>Movie List</button>
+              <button
+                onClick={() => navigate("/")}
+                className="nav-button"
+                id={path === "/" ? "blue" : ""}
+              >
+                Home
+              </button>
+              <button
+                onClick={() => navigate("/movieList")}
+                className="nav-button"
+                id={path === "/movieList" ? "blue" : ""}
+              >
+                Movie List
+              </button>
             </div>
             <div className="icon-container">
               <img
@@ -56,14 +65,31 @@ const App = (props) => {
               />
             </div>
             <div className="navbar-right">
-              <button onClick={()=>navigate("/liked")} className="nav-button" id={path === "/liked" ? "blue" : ""}>Liked</button>
-              <button onClick={()=>navigate("/blocked")} className="nav-button" id={path === "/blocked" ? "blue" : ""}>Blocked</button>
+              <button
+                onClick={() => navigate("/detail")}
+                className="nav-button"
+                id={path === "/detail" ? "blue" : ""}
+              >
+                Detail
+              </button>
+              <button
+                onClick={() => navigate("/liked")}
+                className="nav-button"
+                id={path === "/liked" ? "blue" : ""}
+              >
+                Liked
+              </button>
+              <button
+                onClick={() => navigate("/blocked")}
+                className="nav-button"
+                id={path === "/blocked" ? "blue" : ""}
+              >
+                Blocked
+              </button>
             </div>
           </div>
         </nav>
-        <div className="content">
-          {props.children}
-        </div>
+        <div className="content">{props.children}</div>
       </div>
     </div>
   );
