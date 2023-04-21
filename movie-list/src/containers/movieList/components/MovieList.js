@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import MovieCard from "./MovieCard";
 // import MovieCard from "../../components/MoviesCard.js";
 import { connect } from "react-redux";
-import "../MovieList.css";
+// import "../MovieList.css";
+import "../MovieList.sass";
 import { ADD_MOVIES, ADD_LIKED_MOVIE, REMOVE_LIKED_MOVIE, ADD_BLOCKED_MOVIE, REMOVE_BLOCKED_MOVIE } from '../../../constants';
 import { actions } from '../store/actionCreator';
 
@@ -17,7 +17,7 @@ const MovieList = (props) => {
     // update the list of movies when the page number or sort option changes
     useEffect(() => {
         // load the movies from the api only if the page is not already loaded
-        for (let page in props.movies.movies) {
+        for (let page in props.movies) {
             // console.log("page", page, "currentPage", currentPage);
             if ('page_' + currentPage === page) {
                 return;
@@ -50,10 +50,10 @@ const MovieList = (props) => {
             // console.log(`${page}: ${props.movies.movies[page]}`);
             // console.log("page", page, "currentPage", currentPage);
             if (page === 'page_' + currentPage) {
-                return props.movies[page].map((movie) => <MovieCard key={movie.id} movie={movie} 
-                likedMovies={props.likedMovies} blockedMovies={props.blockedMovies}
-                addLikedMovie={props.addLikedMovie} removeLikedMovie={props.removeLikedMovie} 
-                addBlockedMovie={props.addBlockedMovie} removeBlockedMovie={props.removeBlockedMovie} />);
+                return props.movies[page].map((movie) => <MovieCard key={movie.id} movie={movie}
+                    likedMovies={props.likedMovies} blockedMovies={props.blockedMovies}
+                    addLikedMovie={props.addLikedMovie} removeLikedMovie={props.removeLikedMovie}
+                    addBlockedMovie={props.addBlockedMovie} removeBlockedMovie={props.removeBlockedMovie} />);
             }
         }
         return <p>Loading</p>;
@@ -61,44 +61,48 @@ const MovieList = (props) => {
 
 
 
-// render MovieList component
-return (
-    <div>
-        <div className="sort">
-            <button
-                onClick={() => handleSortChange("title")}
-            >
-                title
-            </button>
-            <button
-                onClick={() => handleSortChange("vote_count")}
-            >
-                Vote Count
-            </button>
-            <button
-                onClick={() => handleSortChange("vote_average")}
-            >
-                Vote Average
-            </button>
-            <button
-                onClick={() => handleSortChange("release_date")}
-            >
-                Release Date
-            </button>
+    // render MovieList component
+    return (
+        <div>
+            <div className="movieList_sort">
+                <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => handleSortChange("title")}
+                >
+                    title
+                </button>
+                <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => handleSortChange("vote_count")}
+                >
+                    Vote Count
+                </button>
+                <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => handleSortChange("vote_average")}
+                >
+                    Vote Average
+                </button>
+                <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => handleSortChange("release_date")}
+                >
+                    Release Date
+                </button>
+            </div>
+            <div className="grid">{renderMovies()}</div>
+            <div className="pagination">
+                <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Prev
+                </button>
+                <span>{currentPage}</span>
+                <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+            </div>
         </div>
-        <div className="grid">{renderMovies()}</div>
-        <div className="pagination">
-            <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-            >
-                Prev
-            </button>
-            <span>{currentPage}</span>
-            <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-        </div>
-    </div>
-);
+    );
 };
 
 // send data from store to component
@@ -115,9 +119,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getMovies: (sortBy, currentPage) => dispatch(actions.getMovies(sortBy, currentPage)),
-        addLikedMovie: (movieID,movie) => dispatch(actions.addLikedMovie(movieID,movie)),
+        addLikedMovie: (movieID, movie) => dispatch(actions.addLikedMovie(movieID, movie)),
         removeLikedMovie: (movieID) => dispatch(actions.removeLikedMovie(movieID)),
-        addBlockedMovie: (movieID,movie) => dispatch(actions.addBlockedMovie(movieID,movie)),
+        addBlockedMovie: (movieID, movie) => dispatch(actions.addBlockedMovie(movieID, movie)),
         removeBlockedMovie: (movieID) => dispatch(actions.removeBlockedMovie(movieID)),
     }
 }

@@ -10,58 +10,66 @@
     grid-gap: 20px;
 }
 
-.card {
+.movieList_sort {
+    padding: 0 0 10px 10px;
+}
+
+.movieList_image_container {
     position: relative;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    height: 100%;
+
 }
 
-.card img {
-    max-width: 100%;
-    height: auto;
-}
-
-.img-container {
-    position: relative;
-    min-height: 100%;
-}
-
-.card .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.movieList_image_container img {
     width: 100%;
-    height: 30%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.movieList_movieCard_overlay {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    left: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: opacity 0.3s;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
 }
 
-.overlay h4 {
-    margin: 0;
-    color: #fff;
+.movieList_movieCard_overlay .movieCard_overview {
+    width: 100%;
+    height: fit-content;
 }
 
-.overlay p {
-    margin: 0;
-    color: #fff;
-    font-size: 0.8rem;
-}
-
-.overlay button {
-    color: #fff;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.card:hover .overlay {
-    transform: translateY(-30%);
+.card:hover .movieList_movieCard_overlay {
     opacity: 1;
+}
+
+.movieList_card {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+}
+
+.movieList_card p {
+    color: white;
+    margin: 0.2em;
+    text-align: center;
+}
+
+.movieCard_title{
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    margin: 3px;
 }
