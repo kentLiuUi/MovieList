@@ -12,9 +12,6 @@
 
 .card {
     position: relative;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
 }
 
 .card img {
@@ -27,12 +24,12 @@
     min-height: 100%;
 }
 
-.card .overlay {
+
+
+.MovieList_MovieCard_overlay {
     position: absolute;
+    height: 100px;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30%;
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     transition: transform 0.3s, opacity 0.3s;
@@ -43,10 +40,11 @@
     box-sizing: border-box;
 }
 
-.overlay h4 {
-    margin: 0;
-    color: #fff;
+.card:hover .MovieList_MovieCard_overlay {
+    transform: translateY(-30%);
+    opacity: 1;
 }
+
 
 .overlay p {
     margin: 0;
@@ -61,7 +59,3 @@
     cursor: pointer;
 }
 
-.card:hover .overlay {
-    transform: translateY(-30%);
-    opacity: 1;
-}

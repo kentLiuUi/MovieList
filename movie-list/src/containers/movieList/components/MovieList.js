@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import MovieCard from "./MovieCard";
 // import MovieCard from "../../components/MoviesCard.js";
 import { connect } from "react-redux";

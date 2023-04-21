@@ -12,9 +12,9 @@ const MovieCard = (props) => {
 
     return (
         <div className="card" style={{display:(movie.id in props.blockedMovies)?'none':''}} >
-            <div className="overlay">
+            <div className="MovieList_MovieCard_overlay">
                 <div>
-                    <h4>{movie.title}</h4>
+                    <p>{movie.overview}</p>
                     <p>{movie.release_date}</p>
                     <p>{movie.vote_average} / 10 ({movie.vote_count} votes)</p>
                 </div>
