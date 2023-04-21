@@ -48,7 +48,6 @@
 }
 
 .card:hover .movieList_movieCard_overlay {
-    /* transform: translateY(-30%); */
     opacity: 1;
 }
 

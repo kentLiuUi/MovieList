@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 // import MovieCard from "../../components/MoviesCard.js";
 import { connect } from "react-redux";
-import "../MovieList.css";
+// import "../MovieList.css";
+import "../MovieList.sass";
 import { ADD_MOVIES, ADD_LIKED_MOVIE, REMOVE_LIKED_MOVIE, ADD_BLOCKED_MOVIE, REMOVE_BLOCKED_MOVIE } from '../../../constants';
 import { actions } from '../store/actionCreator';
 
@@ -16,7 +17,7 @@ const MovieList = (props) => {
     // update the list of movies when the page number or sort option changes
     useEffect(() => {
         // load the movies from the api only if the page is not already loaded
-        for (let page in props.movies.movies) {
+        for (let page in props.movies) {
             // console.log("page", page, "currentPage", currentPage);
             if ('page_' + currentPage === page) {
                 return;
