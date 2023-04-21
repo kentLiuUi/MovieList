@@ -1,89 +1,130 @@
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchData } from "../redux/DetailReducer";
+import { setDetailData } from "../redux/DetailReducer";
+import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import "../DetailPage.sass";
+import { useNavigate } from "react-router-dom";
+import {
+  GENRE_COLORS,
+  API_KEY,
+  IMAGE_URL,
+  DETAIL_URL,
+} from "../../../constants";
 
-const imageUrl = "https://image.tmdb.org/t/p/w500";
+function DetailPage(props) {
+  const { detailData, setDetailData } = props;
+  const navigate = useNavigate();
 
-// display movie poster
-const MoviePoster = ({ poster }) => (
-  <div>
-    <img src={imageUrl + poster} alt={poster} />
-  </div>
-);
+  let { movieId } = useParams();
+  useEffect(() => {
+    console.log(movieId);
+    fetch(DETAIL_URL + movieId + "?api_key=" + API_KEY)
+      .then((response) => response.json())
+      .then((data) => setDetailData(data));
+  }, []);
 
-// display movie title
-const MovieTitle = ({ title }) => <h2>{title}</h2>;
-
-// display movie rating
-const MovieRating = ({ rating }) => (
-  <span className={getColor(rating)}>{rating.toFixed(1)}</span>
-);
-
-// function to display the color of rating based on the number
-const getColor = (vote) => {
-  if (vote >= 8) {
-    return "green";
-  } else if (vote >= 5) {
-    return "orange";
-  } else {
-    return "red";
+  if (!detailData) {
+    return <p>Loading...</p>;
   }
+
+  const posterPath = IMAGE_URL + detailData.poster_path;
+  const backdropPath = IMAGE_URL + detailData.backdrop_path;
+
+  const genres = detailData.genres || [];
+  const genresList = genres.map((genre, index) => (
+    <span
+      key={genre.id}
+      className="genre"
+      style={{
+        backgroundColor: GENRE_COLORS[index % GENRE_COLORS.length],
+      }}
+    >
+      {genre.name}
+    </span>
+  ));
+
+  const productionCompaniesList = detailData.production_companies
+    ? detailData.production_companies.map((company) => {
+        const logoPath = company.logo_path
+          ? IMAGE_URL + company.logo_path
+          : null;
+        return (
+          <div key={company.id}>
+            {logoPath ? (
+              <img src={logoPath} alt={company.name} />
+            ) : (
+              <p>{company.name}</p>
+            )}
+          </div>
+        );
+      })
+    : "";
+
+  // function to display the color of rating based on the number
+  const getColor = () => {
+    if (detailData.vote_average >= 8) {
+      return "green";
+    } else if (detailData.vote_average >= 5) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  };
+
+  const HandleBack = () => {
+    navigate(-1);
+  };
+
+  return (
+    <section className="detailPageContainer">
+      <img className="backgroundImg" src={backdropPath} alt="background" />
+      <div className="backBtn" onClick={HandleBack}>
+        <FontAwesomeIcon icon={faChevronLeft} style={{ color: "#ffffff" }} />
+        <span className="backText">Back</span>
+      </div>
+
+      <div className="detailContainer">
+        <img className="moviePoster" src={posterPath} alt={detailData.title} />
+        <div className="movieInfo">
+          <div className="titleContainer">
+            <h2 className="title">{detailData.title}</h2>
+            <p className={getColor()}>
+              {detailData.vote_average && detailData.vote_average.toFixed(1)}
+            </p>
+          </div>
+          <div className="detailInfoContainer">
+            <div className="releaseDate">
+              <span className="greyTilte">Release Date</span>
+              <span>{detailData.release_date}</span>
+            </div>
+            <div className="genresList">
+              <span className="greyTilte">Genres</span>
+              <span>{genresList}</span>
+            </div>
+            <p className="overview">{detailData.overview}</p>
+            <div className="productionCompanies">{productionCompaniesList}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function mapStateToProps(state) {
+  console.log("mapStatesToProps", state);
+  return {
+    detailData: state.detailPageReducer.detailData,
+  };
+}
+
+const mapDispatchToProps = {
+  setDetailData,
 };
 
-// display release date
-const ReleaseDate = ({ date }) => (
-  <div>
-    <span>Release Date</span>
-    <span>{date}</span>
-  </div>
-);
+// const mapDispatchToProps = (dispatch) => ({
+//   setDetailData: (detailData) => dispatch(setDetailData(detailData)),
+// })
 
-// display genre
-const DetailGenre = ({ genre }) => {};
-
-const MovieOverview = ({ overview }) => (
-  <div>
-    <p>{overview}</p>
-  </div>
-);
-
-// display production company
-
-// const ProductionCompanies = ({ companies }) => {
-//   return companies.map((company) => {
-//     return company.logo_path === null ? (
-//       <span key={company.id}>{company.name}</span>
-//     ) : (
-//       <img src={imageUrl + company.logo_path} alt={company.name} />
-//     )
-//   })
-// }
-
-const mapStateToProps = (state) => ({
-  poster: state.data.poster_path,
-  title: state.data.title,
-  rating: state.data.vote_average,
-  date: state.data.release_date,
-  overview: state.data.overview,
-  companies: state.data.production_companies,
-  error: state.error,
-});
-
-export const ConnectedMoviePoster = connect(mapStateToProps)(MoviePoster);
-export const ConnectedMovieTitle = connect(mapStateToProps)(MovieTitle);
-export const ConnectedMovieRating = connect(mapStateToProps, { getColor })(
-  MovieRating
-);
-export const ConnectedReleaseDate = connect(mapStateToProps)(ReleaseDate);
-export const ConnectedMovieOverview = connect(mapStateToProps)(MovieOverview);
-// export const ConnectedProductionCompanies = connect(mapStateToProps)(
-//   ProductionCompanies
-// )
-
-export default connect(null, { fetchData })(
-  ConnectedMoviePoster,
-  ConnectedMovieTitle,
-  ConnectedMovieRating,
-  ConnectedReleaseDate,
-  ConnectedMovieOverview
-  // ConnectedProductionCompanies
-);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);
