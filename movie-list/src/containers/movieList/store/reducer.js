@@ -38,8 +38,13 @@ const moviesReducer = (state = initialState, action) => {
         case ADD_BLOCKED_MOVIE: {
             // console.log("ADD_BLOCKED_MOVIE action", action);
             // console.log("ADD_BLOCKED_MOVIE state", state);
+            let updatedLikedMovies = state.likedMovies;
+            delete updatedLikedMovies[action.movieId];
             return {
                 ...state,
+                likedMovies: {
+                    ...updatedLikedMovies
+                },
                 blockedMovies: {
                     ...state.blockedMovies,
                     [action.movieId]: action.movie

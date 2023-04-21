@@ -25,7 +25,12 @@ const MovieList = (props) => {
         }
         // get the list of movies from the api
         props.getMovies(sortBy, currentPage);
-    }, [sortBy, currentPage]);
+    }, [currentPage]);
+
+    useEffect(() => {
+        // get the list of movies from the api
+        props.getMovies(sortBy, currentPage);
+    }, [sortBy]);
 
     // page number changes
     const handlePageChange = (pageNumber) => {
@@ -64,6 +69,17 @@ const MovieList = (props) => {
     // render MovieList component
     return (
         <div>
+            <div className="pagination">
+                <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Prev
+                </button>
+                <span>{currentPage}</span>
+                <button className="btn btn-primary btn-sm" onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+            </div>
             <div className="movieList_sort">
                 <button
                     className="btn btn-primary btn-sm"
@@ -91,16 +107,7 @@ const MovieList = (props) => {
                 </button>
             </div>
             <div className="grid">{renderMovies()}</div>
-            <div className="pagination">
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                >
-                    Prev
-                </button>
-                <span>{currentPage}</span>
-                <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-            </div>
+            
         </div>
     );
 };
