@@ -74,9 +74,9 @@ function DetailPage(props) {
 
   // function to display the color of rating based on the number
   const getColor = () => {
-    if (movieData.vote_average >= 8) {
+    if (detailData.vote_average >= 8) {
       return "green";
-    } else if (movieData.vote_average >= 5) {
+    } else if (detailData.vote_average >= 5) {
       return "orange";
     } else {
       return "red";
