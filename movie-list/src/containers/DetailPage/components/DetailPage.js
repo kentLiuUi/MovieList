@@ -2,48 +2,35 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { setDetailData } from "../redux/DetailReducer";
 import { useParams } from "react-router-dom";
-import '../DetailPage.sass';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import "../DetailPage.sass";
+import { useNavigate } from "react-router-dom";
+import {
+  GENRE_COLORS,
+  API_KEY,
+  IMAGE_URL,
+  DETAIL_URL,
+} from "../../../constants";
 
 function DetailPage(props) {
   const { detailData, setDetailData } = props;
-  let {movieId} = useParams();
+  const navigate = useNavigate();
+
+  let { movieId } = useParams();
   useEffect(() => {
     console.log(movieId);
-    fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=cf5b35c889b9f92a5051a5c043a4ea36`
-    )
+    fetch(DETAIL_URL + movieId + "?api_key=" + API_KEY)
       .then((response) => response.json())
-      .then((data) => setDetailData(data))
+      .then((data) => setDetailData(data));
   }, []);
 
   if (!detailData) {
     return <p>Loading...</p>;
   }
 
-  const posterPath = `https://image.tmdb.org/t/p/w500${detailData.poster_path}`;
-  const backdropPath = `https://image.tmdb.org/t/p/w500${detailData.backdrop_path}`;
-
-  const genreColors = [
-    "#f44336",
-    "#e91e63",
-    "#9c27b0",
-    "#673ab7",
-    "#3f51b5",
-    "#2196f3",
-    "#03a9f4",
-    "#00bcd4",
-    "#009688",
-    "#4caf50",
-    "#8bc34a",
-    "#cddc39",
-    "#ffeb3b",
-    "#ffc107",
-    "#ff9800",
-    "#ff5722",
-    "#795548",
-    "#9e9e9e",
-    "#607d8b",
-  ];
+  const posterPath = IMAGE_URL + detailData.poster_path;
+  const backdropPath = IMAGE_URL + detailData.backdrop_path;
 
   const genres = detailData.genres || [];
   const genresList = genres.map((genre, index) => (
@@ -51,7 +38,7 @@ function DetailPage(props) {
       key={genre.id}
       className="genre"
       style={{
-        backgroundColor: genreColors[index % genreColors.length],
+        backgroundColor: GENRE_COLORS[index % GENRE_COLORS.length],
       }}
     >
       {genre.name}
@@ -61,7 +48,7 @@ function DetailPage(props) {
   const productionCompaniesList = detailData.production_companies
     ? detailData.production_companies.map((company) => {
         const logoPath = company.logo_path
-          ? `https://image.tmdb.org/t/p/w500${company.logo_path}`
+          ? IMAGE_URL + company.logo_path
           : null;
         return (
           <div key={company.id}>
@@ -86,10 +73,18 @@ function DetailPage(props) {
     }
   };
 
+  const HandleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <section className="detailPageContainer">
       <img className="backgroundImg" src={backdropPath} alt="background" />
-      <div className="backBtn">Back</div>
+      <div className="backBtn" onClick={HandleBack}>
+        <FontAwesomeIcon icon={faChevronLeft} style={{ color: "#ffffff" }} />
+        <span className="backText">Back</span>
+      </div>
+
       <div className="detailContainer">
         <img className="moviePoster" src={posterPath} alt={detailData.title} />
         <div className="movieInfo">
@@ -118,7 +113,7 @@ function DetailPage(props) {
 }
 
 function mapStateToProps(state) {
-  console.log('mapStatesToProps', state)
+  console.log("mapStatesToProps", state);
   return {
     detailData: state.detailPageReducer.detailData,
   };
