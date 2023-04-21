@@ -26,7 +26,7 @@ const DetailPageContainer = () => {
       <ConnectedMovieTitle />
       <ConnectedMovieRating />
       <ConnectedReleaseDate />
-      <ConnectedMovieOverview />
+      {/* <ConnectedMovieOverview /> */}
       {/* <ConnectedProductionCompanies /> */}
     </div>
   );

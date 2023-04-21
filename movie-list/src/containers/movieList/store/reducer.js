@@ -59,6 +59,14 @@ const moviesReducer = (state = initialState, action) => {
             }
         }
 
+        case "ADD_GENRE_LIST":{
+            return{
+                ...state,
+                genreList: {
+                    ...action.genreList
+                }
+            }
+        }
 
         // case "REMOVE_BLOCKED_MOVIE":{
         //     let updatedBlockedMovies = state.blockedMovies;
