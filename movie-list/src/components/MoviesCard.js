@@ -1,10 +1,12 @@
 import {POSTER_BASE_URL} from '../constants';
 import { connect } from 'react-redux';
 import MoviesCardHover from './MoviesCardHover';
+import { useNavigate } from 'react-router-dom';
 
 const MoviesCard = (props) => {
     console.log('MoviesCard props', props);
     const {pageType, movieId, blockedMovies, likedMovies} = props;
+    let navigate = useNavigate()
     // console.log(movieId)
     // console.log('card', likedMovies);
     switch (pageType) {
@@ -13,7 +15,7 @@ const MoviesCard = (props) => {
             if(Object.keys(likedMovies).length){
                 return(
                     <div className='likedMoviesCard moviesCard'>
-                        <img src={`${POSTER_BASE_URL}${curMovie.poster_path}`} alt="movie poster"/>
+                        <img src={`${POSTER_BASE_URL}${curMovie.poster_path}`} alt="movie poster" onClick={()=>navigate(`/detail/${movieId}`)}/>
                         <MoviesCardHover movieId={movieId} pageType={pageType}/>
                     </div>
                 )
@@ -24,7 +26,7 @@ const MoviesCard = (props) => {
             if(Object.keys(blockedMovies).length){
                 return(
                     <div className='blockedMoviesCard moviesCard'>
-                        <img src={`${POSTER_BASE_URL}${curMovie.poster_path}`} alt="movie poster"/>
+                        <img src={`${POSTER_BASE_URL}${curMovie.poster_path}`} alt="movie poster" onClick={()=>navigate(`/detail/${movieId}`)}/>
                         <MoviesCardHover movieId={movieId} pageType={pageType}/>
                     </div>
                 )
