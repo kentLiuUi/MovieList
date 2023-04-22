@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap')
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+body
+  font-family: 'Poppins', sans-serif
+  font-size: 0.85rem
+  color: white
+
+.detailPageContainer
+  position: relative
+  width: 100vw
+  height: 100vh
+  padding: 57px 125px
+
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.6)
+    z-index: -1
+
+.backgroundImg
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  object-fit: cover
+  filter: blur(7px)
+  z-index: -2
+
+.backBtn
+  margin-bottom: 48px
+  font-size: 0.85rem
+  cursor: pointer
+
+.backText
+  padding-left: 9px
+
+.detailContainer
+  display: flex
+  gap: 97px
+
+.moviePoster
+  max-height: 600px
+  box-shadow: 5px 5px 40px 5px rgba(0, 0, 0, 0.8)
+  border-radius: 10px
+
+.titleContainer
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding-bottom: 131px
+
+.title
+  font-weight: 400
+  font-size: 1.7rem
+  max-width: 400px
+
+.detailInfoContainer
+  display: flex
+  flex-direction: column
+  gap: 38px
+
+.releaseDate, .genresList
+  display: flex
+  align-items: center
+  gap: 37px
+  font-size: 0.85rem
+  line-height: 27px
+
+.genre
+  padding: 5px 10px
+  margin: 5px
+  border-radius: 5px
+  font-size: 0.75rem
+
+.greyTilte
+  font-size: 0.75rem
+  color: #aaaaaa
+  line-height: 1.5rem
+
+
+.overview
+  font-weight: 400
+  font-size: 0.85rem
+  line-height: 1.6rem
+
+.productionCompanies
+  background: rgba(255, 255, 255, 0.13)
+  box-shadow: 5px 5px 30px 5px rgba(0, 0, 0, 0.25)
+  border-radius: 5px
+  display: flex
+  flex-wrap: wrap
+  gap: 30px
+  padding: 30px
+  max-width: 633px
+
+  img
+    max-height: 30px
+    max-width: 120px
+
+.green
+  color: lightgreen
+  font-weight: 500
+  font-size: 1rem
+
+.orange
+  color: orange
+  font-weight: 500
+  font-size: 1rem
+
+.red
+  color: red
+  font-weight: 500
+  font-size: 1rem

@@ -1,0 +1,113 @@
+/* 设置背景图片 */
+.background
+ width:100%
+ min-height: 100vh
+ height: 100%
+ background-size: cover
+// background-position:
+ background-repeat: no-repeat
+ background-attachment: fixed
+ filter: blur(10px)
+ 
+
+/* 设置透明黑色层 /
+.overlay
+ width: 100%
+ min-height: 100vh
+ height: 100%
+ background-color: rgba(0, 0, 0, 0.5) /*设置透明度为0.5的黑色背景 */
+ display: flex
+ flex-direction: column
+ justify-content: start
+ align-items: center
+
+/* 设置导航栏样式 */
+.navbar
+ width: 100%
+ padding: 2rem
+ background-color: transparent
+ position: relative
+// top: 0
+// left: 0
+
+.navbar-container
+ display: flex
+ width: 100%
+ justify-content: space-between
+ align-items: center
+ position: absolute
+ top: 50%
+ left: 50%
+ transform: translate(-50%, -50%)
+ padding-inline: 3em
+
+ //padding-inline: 130px
+
+.navbar-left
+ display: flex
+
+
+.navbar-right
+ display: flex
+
+
+.nav-button
+ color: #fff 
+ background-color: transparent
+ border: none
+ outline: none
+ cursor: pointer
+ margin-right: 1rem
+ padding: 0.5rem
+ font-size: 1rem
+ text-decoration: none
+ position: relative
+ font-family: "Poppins"
+ font-style: normal
+ font-weight: 400
+ font-size: 20px
+ line-height: 30px /*identical to box height*/
+ background: transparent 
+ -webkit-background-clip: text
+ -webkit-text-fill-color: #fff 
+ background-clip: text
+
+ &:after
+  content: ""
+  display: block
+  width: 0
+  height: 2px
+  background-color: #01b4e4 /* 设置下划线颜色为蓝色 */
+  position: absolute
+  bottom: -2px
+  left: 0
+  transition: width 0.2s
+
+ &:hover
+  color: #01b4e4 /* 设置hover状态下的字体颜色为蓝色 */
+  background: linear-gradient(90deg, #90cea1 -10%, #01b4e4 100%)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+  background-clip: text
+
+ &:hover:after
+  width: 100%
+
+/* 设置图标样式 */
+.icon-container
+ margin-top: 0rem
+
+.icon
+ width: 173px
+ height: 36px
+ object-fit: contain
+
+.content
+ width: 100%
+
+#blue
+ color: #01b4e4 /* 设置hover状态下的字体颜色为蓝色 */
+ background: linear-gradient(90deg, #90cea1 -10%, #01b4e4 100%)
+ -webkit-background-clip: text
+ -webkit-text-fill-color: transparent
+ background-clip: text
