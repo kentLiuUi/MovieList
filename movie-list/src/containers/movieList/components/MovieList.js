@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import MovieCard from "./MovieCard";
-// import MovieCard from "../../components/MoviesCard.js";
 import { connect } from "react-redux";
-// import "../MovieList.css";
 import "../MovieList.sass";
 import { ADD_MOVIES, ADD_LIKED_MOVIE, REMOVE_LIKED_MOVIE, ADD_BLOCKED_MOVIE, REMOVE_BLOCKED_MOVIE } from '../../../constants';
 import { actions } from '../store/actionCreator';
@@ -12,32 +11,36 @@ const MovieList = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [sortBy, setSortBy] = useState("popularity.desc");
 
+    MovieList.propTypes = {
+        movies: PropTypes.object.isRequired,
+        likedMovies: PropTypes.object.isRequired,
+        blockedMovies: PropTypes.object.isRequired,
+        getMovies: PropTypes.func.isRequired,
+        addLikedMovie: PropTypes.func.isRequired,
+        removeLikedMovie: PropTypes.func.isRequired,
+        addBlockedMovie: PropTypes.func.isRequired,
+        removeBlockedMovie: PropTypes.func.isRequired,
+    };
+
     console.log("MovieList_props", props)
 
-    // update the list of movies when the page number or sort option changes
     useEffect(() => {
-        // load the movies from the api only if the page is not already loaded
         for (let page in props.movies) {
-            // console.log("page", page, "currentPage", currentPage);
             if ('page_' + currentPage === page) {
                 return;
             }
         }
-        // get the list of movies from the api
         props.getMovies(sortBy, currentPage);
     }, [currentPage]);
 
     useEffect(() => {
-        // get the list of movies from the api
         props.getMovies(sortBy, currentPage);
     }, [sortBy]);
 
-    // page number changes
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
 
-    // sort option changes
     const handleSortChange = (sortOption) => {
         if (sortBy === `${sortOption}.desc`) {
             setSortBy(`${sortOption}.asc`);
@@ -48,12 +51,8 @@ const MovieList = (props) => {
         }
     };
 
-    // render the list of movies
     const renderMovies = () => {
-        // console.log("props.movies.movies ", props.movies);
         for (let page in props.movies) {
-            // console.log(`${page}: ${props.movies.movies[page]}`);
-            // console.log("page", page, "currentPage", currentPage);
             if (page === 'page_' + currentPage) {
                 return props.movies[page].map((movie) => <MovieCard key={movie.id} movie={movie}
                     likedMovies={props.likedMovies} blockedMovies={props.blockedMovies}
@@ -65,8 +64,6 @@ const MovieList = (props) => {
     }
 
 
-
-    // render MovieList component
     return (
         <div>
             <div className="pagination">
@@ -107,14 +104,11 @@ const MovieList = (props) => {
                 </button>
             </div>
             <div className="grid">{renderMovies()}</div>
-            
+
         </div>
     );
 };
-
-// send data from store to component
 const mapStateToProps = (state) => {
-    // console.log("MoviList state", state);
     return {
         movies: state.movieList.movies,
         likedMovies: state.movieList.likedMovies,
@@ -122,7 +116,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-// send action to reducer
 const mapDispatchToProps = (dispatch) => {
     return {
         getMovies: (sortBy, currentPage) => dispatch(actions.getMovies(sortBy, currentPage)),
