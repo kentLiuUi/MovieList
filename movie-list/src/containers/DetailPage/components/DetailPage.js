@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "../DetailPage.sass";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import {
   GENRE_COLORS,
@@ -23,7 +24,7 @@ function DetailPage(props) {
     fetch(DETAIL_URL + movieId + "?api_key=" + API_KEY)
       .then((response) => response.json())
       .then((data) => setDetailData(data));
-  }, []);
+  }, [setDetailData]);
 
   if (!detailData) {
     return <p>Loading...</p>;
@@ -61,6 +62,15 @@ function DetailPage(props) {
         );
       })
     : "";
+
+  // let voteAverageColor;
+  // if (detailData.vote_average >= 8) {
+  //   voteAverageColor = "green";
+  // } else if (detailData.vote_average >= 5) {
+  //   voteAverageColor = "orange";
+  // } else {
+  //   voteAverageColor = "red";
+  // }
 
   // function to display the color of rating based on the number
   const getColor = () => {
@@ -111,6 +121,30 @@ function DetailPage(props) {
     </section>
   );
 }
+
+DetailPage.propTypes = {
+  detailData: PropTypes.shape({
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+    vote_average: PropTypes.number,
+    release_date: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      })
+    ),
+    production_companies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        logo_path: PropTypes.string,
+      })
+    ),
+  }),
+  setDetailData: PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   console.log("mapStatesToProps", state);
